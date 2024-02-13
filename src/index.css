@@ -1,7 +1,20 @@
 @import-normalize;
+@import './assets/fonts/NotoSan.ttf';
 
  * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  font-family: "NotoSan", sans-serif;
+ }
+
+ @font-face {
+   font-family: "NotoSan", sans-serif;
+   src: local('NotoSan') local('./assets/fonts/NotoSan.ttf') format("truetype");
+   font-weight: normal;
+   }
+
+ body {
+    background-color: #dde5e9b4;
  }

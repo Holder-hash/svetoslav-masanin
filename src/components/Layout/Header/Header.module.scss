@@ -1,5 +1,57 @@
 .header {
   width: 100%;
-  height: 50px;
-  background-color: #8cd9f3;
+  height: 70px;
+  background-color: rgb(240, 240, 240);
+  box-shadow: 0 0 5px grey;
+}
+
+.headerInner {
+  position: relative;
+  width: 70%;
+  height: inherit;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.logo {
+  width: 100px;
+  max-height: 70px;
+
+  img {
+    width: 100%;
+    max-height: inherit;
+  }
+}
+
+.nav {
+  height: inherit;
+  font-weight: bold;
+  ul {
+    height: inherit;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    list-style: none;
+
+    li {
+      display: flex;
+      gap: 5px;
+      cursor: pointer;
+      font-size: 18px;
+      color: rgb(49, 49, 49);
+    }
+  }
+}
+
+.navIcon {
+  color: rgb(147, 158, 165);
+}
+
+.themeIcon {
+  position: absolute;
+  right: 0;
+  font-size: 25px;
+  cursor: pointer;
 }
