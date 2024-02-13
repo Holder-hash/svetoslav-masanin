@@ -4,6 +4,7 @@ function HomePage() {
   return (
     <>
       <div className={styles.wrapper}>
+        <div className={styles.overview}></div>
         <div className={styles.content}>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora,
@@ -122,8 +123,8 @@ function HomePage() {
             eligendi, architecto tempora recusandae. At aliquid quo mollitia ex
             magnam dolorem laudantium, dolorum doloremque numquam rem.
           </p>
+          <aside className={styles.aside}></aside>
         </div>
-        <aside className={styles.aside}></aside>
       </div>
     </>
   );
