@@ -1,0 +1,21 @@
+.wrapper {
+  width: 80%;
+  height: auto;
+  margin: 2rem auto;
+  display: flex;
+  gap: 50px;
+}
+
+.content {
+  width: 100%;
+  height: auto;
+  text-align: justify;
+}
+
+.aside {
+  width: 500px;
+  height: 500px;
+  background-color: rgb(240, 240, 240);
+  box-shadow: 0 0 5px grey;
+  border-radius: 15px;
+}
