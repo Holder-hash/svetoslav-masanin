@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
-import HomePage from "./screens/HomePage/HomePage";
+import HomePage from "./screens/HomePage/HomePage.jsx";
 
 function App() {
   return (
