@@ -15,7 +15,7 @@ function HomePage() {
               <br />
               Масанин
             </h1>
-            <p>Должность ...</p>
+            <p>Рентгенолаборант</p>
           </div>
 
           <div className={styles.overviewLinks}>

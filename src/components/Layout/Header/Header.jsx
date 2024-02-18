@@ -3,8 +3,10 @@ import logoImg from "../../../assets/images/logo.jpg";
 import { GrDocumentText } from "react-icons/gr";
 import { FaHome } from "react-icons/fa";
 import { LuLightbulbOff } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
   return (
     <header className={styles.header}>
       <div className={styles.headerInner}>
@@ -18,7 +20,7 @@ function Header() {
               <FaHome className={styles.navIcon} />
               Главная
             </li>
-            <li>
+            <li onClick={() => navigate("lectures")}>
               <GrDocumentText className={styles.navIcon} />
               Лекционные материалы
             </li>
