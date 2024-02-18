@@ -3,8 +3,10 @@ import asideImg from "../../assets/images/aside-img.jpg";
 import vkIcon from "../../assets/images/icons/vk-icon.png";
 import tgIcon from "../../assets/images/icons/tg-icon.png";
 import dsIcon from "../../assets/images/icons/ds-icon.png";
+import { useNavigate } from "react-router-dom";
 
 function HomePage() {
+  const navigate = useNavigate();
   return (
     <>
       <div className={styles.wrapper}>
@@ -157,7 +159,9 @@ function HomePage() {
               <li>Тестирование в конце каждой главы</li>
               <li>Альтернативый видео материал</li>
             </ul>
-            <button>Начать учится бесплатно!</button>
+            <button onClick={() => navigate("lectures/")}>
+              Начать учится бесплатно!
+            </button>
           </aside>
         </div>
       </div>

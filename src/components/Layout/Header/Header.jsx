@@ -16,11 +16,11 @@ function Header() {
 
         <nav className={styles.nav}>
           <ul>
-            <li>
+            <li onClick={() => navigate("/svetoslav-masanin/")}>
               <FaHome className={styles.navIcon} />
               Главная
             </li>
-            <li onClick={() => navigate("lectures")}>
+            <li onClick={() => navigate("lectures/")}>
               <GrDocumentText className={styles.navIcon} />
               Лекционные материалы
             </li>
