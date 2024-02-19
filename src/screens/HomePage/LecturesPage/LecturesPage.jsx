@@ -1,4 +1,5 @@
 import styles from "./LecturesPage.module.scss";
+import lectures from "../../../data/lectures.json";
 
 function LecturesPage() {
   return (
@@ -7,12 +8,17 @@ function LecturesPage() {
         <aside className={styles.aside}>
           <h3>Навигация</h3>
 
-          <details>
-            <summary>Легенда</summary>
-            <p>Раскрывающийся текст</p>
-          </details>
+          {lectures.map((lecture) => (
+            <>
+              <details>
+                <summary>{lecture.title}</summary>
+                {lecture.chapters.map((chapter) => (
+                  <p>{chapter.title}</p>
+                ))}
+              </details>
+            </>
+          ))}
         </aside>
-
         <div className={styles.content}></div>
       </div>
     </>
