@@ -19,3 +19,14 @@
     background-color: #dde5e9b4;
     min-width: 1500px;
  }
+
+ .wrapper {
+  width: 80%;
+  height: auto;
+  margin: 2rem auto;
+}
+
+.wrapper--lectures {
+  display: flex;
+  gap: 1rem;
+}
