@@ -8,7 +8,7 @@ function LecturesAside() {
 
       {lectures.map((lecture) => (
         <>
-          <details>
+          <details className={styles.details}>
             <summary>{lecture.title}</summary>
             {lecture.chapters.map((chapter) => (
               <p key={chapter.id}>{chapter.title}</p>
