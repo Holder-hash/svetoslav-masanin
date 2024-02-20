@@ -1,5 +1,5 @@
 import styles from "./LecturesAside.module.scss";
-import lectures from "../../../../data/lectures.json";
+import lectures from "../../../data/lectures.json";
 
 function LecturesAside() {
   return (

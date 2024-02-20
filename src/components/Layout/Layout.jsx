@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Header from "./Header/Header";
-import LecturesAside from "../../screens/HomePage/LecturesPage/LecturesAside/LecturesAside";
+import LecturesAside from "../../screens/LecturesPage/LecturesAside/LecturesAside";
 import { useState, useEffect } from "react";
 
 function Layout() {

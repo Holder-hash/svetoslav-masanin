@@ -2,6 +2,8 @@
     {
         "id": "1",
         "title": "материал 1",
+        "description": "описание материала 1",
+        "img": "https://top-fon.com/uploads/posts/2023-01/1674642104_top-fon-com-p-foni-dlya-prezentatsii-svyazannie-s-medits-68.jpg",
         "chapters": [
             {
                 "id": "1",
@@ -29,6 +31,8 @@
     {
         "id": "2",
         "title": "материал 2",
+        "description": "описание материала 1",
+        "img": "https://top-fon.com/uploads/posts/2023-01/1674642104_top-fon-com-p-foni-dlya-prezentatsii-svyazannie-s-medits-68.jpg",
         "chapters": [
             {
                 "id": "1",
@@ -41,6 +45,8 @@
     {
         "id": "3",
         "title": "материал 3",
+        "description": "описание материала 1",
+        "img": "https://top-fon.com/uploads/posts/2023-01/1674642104_top-fon-com-p-foni-dlya-prezentatsii-svyazannie-s-medits-68.jpg",
         "chapters": [
             {
                 "id": "1",
