@@ -10,19 +10,17 @@ function LecturesAside() {
       <h3>Навигация</h3>
 
       {lectures.map((lecture) => (
-        <>
-          <details className={styles.details} key={lecture.id}>
-            <summary>{lecture.title}</summary>
-            {lecture.chapters.map((chapter) => (
-              <p
-                key={chapter.id}
-                onClick={() => navigate(`lectures/${lecture.id}/${chapter.id}`)}
-              >
-                {chapter.title}
-              </p>
-            ))}
-          </details>
-        </>
+        <details className={styles.details} key={lecture.id}>
+          <summary>{lecture.title}</summary>
+          {lecture.chapters.map((chapter) => (
+            <p
+              key={chapter.id}
+              onClick={() => navigate(`lectures/${lecture.id}/${chapter.id}`)}
+            >
+              {chapter.title}
+            </p>
+          ))}
+        </details>
       ))}
     </aside>
   );
