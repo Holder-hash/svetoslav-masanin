@@ -17,6 +17,17 @@ function LecturesSingle() {
       <div className={styles.content}>
         <h2>{lecture.title}</h2>
         <h2>{chapter.title}</h2>
+        {chapter.video && (
+          <iframe
+            width="60%"
+            height="400"
+            src={chapter.video}
+            title="Максим Кивачук - Рентгенолаборант"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        )}
         <p>{chapter.body}</p>
       </div>
     </>
