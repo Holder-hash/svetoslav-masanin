@@ -3,7 +3,7 @@ import styles from "./LecturesSingle.module.scss";
 function LecturesSingle() {
   return (
     <>
-      <div></div>
+      <div className={styles.content}></div>
     </>
   );
 }
