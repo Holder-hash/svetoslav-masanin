@@ -15,7 +15,11 @@ function LecturesAside() {
           {lecture.chapters.map((chapter) => (
             <p
               key={chapter.id}
-              onClick={() => navigate(`lectures/${lecture.id}/${chapter.id}`)}
+              onClick={() =>
+                navigate(`lectures/${lecture.id}/${chapter.id}`, {
+                  state: { chapter, lecture },
+                })
+              }
             >
               {chapter.title}
             </p>
