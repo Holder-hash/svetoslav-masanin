@@ -4,11 +4,12 @@
   align-items: flex-start;
   gap: 20px;
   min-width: 300px;
-  height: 700px;
+  height: auto;
   background-color: rgb(240, 240, 240);
   box-shadow: 0 0 5px grey;
   border-radius: 15px;
   padding: 15px;
+  color: rgb(49, 49, 49);
 
   h3 {
     font-size: 18px;
