@@ -3,6 +3,7 @@ import Layout from "./components/Layout/Layout";
 import HomePage from "./screens/HomePage/HomePage.jsx";
 import LecturesPage from "./screens/LecturesPage/LecturesPage.jsx";
 import LecturesSingle from "./screens/LecturesPage/LecturesSingle/LecturesSingle.jsx";
+import LecturesTest from "./screens/LecturesPage/LecturesTest/LecturesTest.jsx";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="lectures" element={<LecturesPage />} />
         <Route path="lectures/:id/:id" element={<LecturesSingle />} />
+        <Route path="lectures/:id/test" element={<LecturesTest />} />
       </Route>
     </Routes>
   );

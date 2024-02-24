@@ -28,7 +28,7 @@ function LecturesAside() {
             <p
               key={index}
               onClick={() =>
-                navigate(``, {
+                navigate(`lectures/${lecture.id}/test`, {
                   state: { test, lecture },
                 })
               }
