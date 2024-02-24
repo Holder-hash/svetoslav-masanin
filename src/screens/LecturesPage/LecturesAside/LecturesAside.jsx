@@ -24,6 +24,18 @@ function LecturesAside() {
               {chapter.title}
             </p>
           ))}
+          {lecture.tests.map((test, index) => (
+            <p
+              key={index}
+              onClick={() =>
+                navigate(``, {
+                  state: { test, lecture },
+                })
+              }
+            >
+              {test.title}
+            </p>
+          ))}
         </details>
       ))}
     </aside>

@@ -20,7 +20,6 @@ function LecturesSingle() {
           <p>{lecture.title}</p>
         </div>
         <div className={styles.contentInner}>
-          {" "}
           {chapter.video && (
             <iframe
               src={chapter.video}
