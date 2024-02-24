@@ -20,16 +20,13 @@ function LecturesTest() {
           <p>{lecture.title}</p>
         </div>
         <div className={styles.contentInner}>
-          {/* {chapter.video && (
-            <iframe
-              src={chapter.video}
-              title="Максим Кивачук - Рентгенолаборант"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-          )} */}
-          {/* <p>{chapter.body}</p> */}
+          {test.questions &&
+            test.questions.map((question, index) => (
+              <div key={index}>
+                <input type="radio" name="question" />
+                <span>{question.title}</span>
+              </div>
+            ))}
         </div>
       </div>
     </>
