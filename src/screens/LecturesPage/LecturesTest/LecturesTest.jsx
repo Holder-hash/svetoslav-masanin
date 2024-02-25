@@ -61,7 +61,12 @@ function LecturesTest() {
               {test.questions &&
                 test.questions.map((question, index) => (
                   <>
-                    <SlideNavButtons key={index}>{index + 1}</SlideNavButtons>
+                    <SlideNavButtons
+                      key={index}
+                      onClick={() => setSliderIndex(0 - index * 100)}
+                    >
+                      {index + 1}
+                    </SlideNavButtons>
                   </>
                 ))}
             </div>
