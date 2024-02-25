@@ -44,3 +44,27 @@
     text-align: justify;
   }
 }
+
+.testSliderBody {
+  display: flex;
+  min-width: 100%;
+  overflow: hidden;
+}
+
+.questionBody {
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.optionsBody {
+  display: flex;
+  min-width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.sliderNavWrapper {
+  width: 100%;
+  display: flex;
+}

@@ -1,6 +1,7 @@
 import styles from "./LecturesTest.module.scss";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import SlideNavButtons from "../../../components/ui/SlideNavButtons/SlideNavButtons";
 
 function LecturesTest() {
   const location = useLocation();
@@ -20,13 +21,27 @@ function LecturesTest() {
           <p>{lecture.title}</p>
         </div>
         <div className={styles.contentInner}>
-          {test.questions &&
-            test.questions.map((question, index) => (
-              <div key={index}>
-                <input type="radio" name="question" />
-                <span>{question.title}</span>
-              </div>
-            ))}
+          <div className={styles.testSliderBody}>
+            {test.questions &&
+              test.questions.map((question, index) => (
+                <div key={index} className={styles.questionBody}>
+                  <p>{question.title}</p>
+                  <div className={styles.optionsBody}>
+                    {question.options.map((option, index) => (
+                      <div key={index}>
+                        <input type="radio" name="question" />
+                        <span>{option.title}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+          </div>
+          <div className={styles.sliderNavWrapper}>
+            <SlideNavButtons arrow="left" />
+            <SlideNavButtons arrow="right" />
+            <SlideNavButtons>1 </SlideNavButtons>
+          </div>
         </div>
       </div>
     </>
