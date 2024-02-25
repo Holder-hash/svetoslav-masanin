@@ -3,7 +3,7 @@ import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
 import { useState, useEffect } from "react";
 
-function SlideNavButtons({ children, arrow }) {
+function SlideNavButtons({ children, arrow, ...props }) {
   const [arrowSide, setArrowSide] = useState();
 
   useEffect(() => {
@@ -11,9 +11,10 @@ function SlideNavButtons({ children, arrow }) {
     arrow == "right" && setArrowSide(<FaChevronRight />);
   }, [arrow]);
 
-  console.log(arrow);
   return (
-    <div className={styles.btnBody}>{arrowSide ? arrowSide : children}</div>
+    <div className={styles.btnBody} {...props}>
+      {arrowSide ? arrowSide : children}
+    </div>
   );
 }
 

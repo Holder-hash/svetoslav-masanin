@@ -39,8 +39,13 @@ function LecturesTest() {
           </div>
           <div className={styles.sliderNavWrapper}>
             <SlideNavButtons arrow="left" />
+            <div className={styles.sliderNavIndexWrapper}>
+              {test.questions &&
+                test.questions.map((question, index) => (
+                  <SlideNavButtons key={index}>{index + 1}</SlideNavButtons>
+                ))}
+            </div>
             <SlideNavButtons arrow="right" />
-            <SlideNavButtons>1 </SlideNavButtons>
           </div>
         </div>
       </div>

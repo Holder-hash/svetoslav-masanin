@@ -7,4 +7,9 @@
   background-color: #b9b9b9b4;
   border: 1px solid rgba(128, 128, 128, 0.205);
   border-radius: 5px;
+  transition: 0.3s;
+}
+.btnBody:hover {
+  cursor: pointer;
+  background-color: #a5a5a5b4;
 }
