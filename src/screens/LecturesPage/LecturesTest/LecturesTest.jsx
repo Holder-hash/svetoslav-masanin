@@ -13,8 +13,11 @@ function LecturesTest() {
   useEffect(() => {
     setLecture(location.state.lecture);
     setTest(location.state.test);
-    test.questions && setSlides(test.questions.length);
   }, [location.state]);
+
+  useEffect(() => {
+    test.questions && setSlides(test.questions.length);
+  });
 
   return (
     <>
