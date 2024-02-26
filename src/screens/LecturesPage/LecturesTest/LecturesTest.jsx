@@ -2,6 +2,7 @@ import styles from "./LecturesTest.module.scss";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SlideNavButtons from "../../../components/ui/SlideNavButtons/SlideNavButtons";
+import TestOption from "../../../components/ui/TestOption/TestOption";
 
 function LecturesTest() {
   const location = useLocation();
@@ -38,10 +39,10 @@ function LecturesTest() {
                 <div key={index} className={styles.questionBody}>
                   <p>{question.title}</p>
                   <div className={styles.optionsBody}>
+                    {/* options */}
                     {question.options.map((option, index) => (
                       <div key={index}>
-                        <input type="radio" name="question" />
-                        <span>{option.title}</span>
+                        <TestOption text={option.title} name={"question"} />
                       </div>
                     ))}
                   </div>
