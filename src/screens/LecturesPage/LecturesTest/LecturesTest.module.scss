@@ -61,11 +61,18 @@
   flex-direction: column;
 }
 
+.questionTitle {
+  padding-right: 2rem;
+}
+
 .optionsBody {
   display: flex;
   min-width: 100%;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 3rem 13rem;
 }
 
 .sliderNavWrapper {

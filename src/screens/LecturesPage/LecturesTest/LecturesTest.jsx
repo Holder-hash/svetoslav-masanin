@@ -37,7 +37,7 @@ function LecturesTest() {
             {test.questions &&
               test.questions.map((question, index) => (
                 <div key={index} className={styles.questionBody}>
-                  <p>{question.title}</p>
+                  <p className={styles.questionTitle}>{question.title}</p>
                   <div className={styles.optionsBody}>
                     {/* options */}
                     {question.options.map((option, index) => (
