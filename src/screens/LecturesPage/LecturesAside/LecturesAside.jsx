@@ -8,35 +8,40 @@ function LecturesAside() {
   return (
     <aside className={styles.aside}>
       <h3>Навигация</h3>
-
       {lectures.map((lecture) => (
-        <details className={styles.details} key={lecture.id}>
-          <summary>{lecture.title}</summary>
-          {lecture.chapters.map((chapter) => (
-            <p
-              key={chapter.id}
-              onClick={() =>
-                navigate(`lectures/${lecture.id}/${chapter.id}`, {
-                  state: { chapter, lecture },
-                })
-              }
-            >
-              {chapter.title}
-            </p>
-          ))}
-          {lecture.tests.map((test, index) => (
-            <p
-              key={index}
-              onClick={() =>
-                navigate(`lectures/${lecture.id}/test`, {
-                  state: { test, lecture },
-                })
-              }
-            >
-              {test.title}
-            </p>
-          ))}
-        </details>
+        <>
+          <h4>Темы</h4>
+          <ul className={styles.details} key={lecture.id}>
+            {lecture.chapters.map((chapter) => (
+              <li
+                key={chapter.id}
+                onClick={() =>
+                  navigate(`lectures/${lecture.id}/${chapter.id}`, {
+                    state: { chapter, lecture },
+                  })
+                }
+              >
+                <summary>{chapter.title}</summary>
+              </li>
+            ))}
+          </ul>
+
+          <h4>Тесты</h4>
+          <ul>
+            {lecture.tests.map((test, index) => (
+              <li
+                key={index}
+                onClick={() =>
+                  navigate(`lectures/${lecture.id}/test`, {
+                    state: { test, lecture },
+                  })
+                }
+              >
+                {test.title}
+              </li>
+            ))}
+          </ul>
+        </>
       ))}
     </aside>
   );
