@@ -1,5 +1,4 @@
 import styles from "./LecturesSingle.module.scss";
-import wordFormatingStyles from "./LectureSingleWordFormating.module.css";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -31,10 +30,7 @@ function LecturesSingle() {
             ></iframe>
           )}
           {/* <p>{chapter.body}</p> */}
-          <div
-            dangerouslySetInnerHTML={{ __html: chapter.body }}
-            // className={wordFormatingStyles}
-          />
+          <div dangerouslySetInnerHTML={{ __html: chapter.body }} />
         </div>
       </div>
     </>
