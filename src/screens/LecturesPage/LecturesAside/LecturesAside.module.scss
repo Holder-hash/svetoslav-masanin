@@ -24,5 +24,9 @@
   ul {
     list-style: none;
     margin-bottom: 1rem;
+
+    li {
+      cursor: pointer;
+    }
   }
 }
