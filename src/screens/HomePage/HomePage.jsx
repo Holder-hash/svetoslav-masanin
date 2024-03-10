@@ -59,7 +59,6 @@ function HomePage() {
               alt="ФОто для  партфолио.jpg"
               style={{
                 marginRight: "9pt",
-                marginLeft: "9pt",
                 AwLeftPos: "257.9pt",
                 AwRelHpos: "column",
                 AwRelVpos: "paragraph",
@@ -369,7 +368,7 @@ function HomePage() {
             <span style={{ font: '7pt "Times New Roman"' }}>
               &nbsp;&nbsp;&nbsp;
             </span>
-            <span style={{ fontFamily: '"Times New Roman"' }}>4</span>
+            <span style={{ fontFamily: '"Times New Roman"' }}>4 </span>
             <span style={{ fontFamily: '"Times New Roman"' }}>
               место на конкурсе профессионального мастерства «Формула жизни»
               «Специалист по лучевой диагностики» в категории «
