@@ -20,7 +20,7 @@ function LecturesSingle() {
           <p>{lecture.title}</p>
         </div>
         <div className={styles.contentInner}>
-          {chapter.video && (
+          {/* {chapter.video && (
             <iframe
               src={chapter.video}
               title="Максим Кивачук - Рентгенолаборант"
@@ -28,7 +28,7 @@ function LecturesSingle() {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
             ></iframe>
-          )}
+          )} */}
           {/* <p>{chapter.body}</p> */}
           <div dangerouslySetInnerHTML={{ __html: chapter.body }} />
         </div>
