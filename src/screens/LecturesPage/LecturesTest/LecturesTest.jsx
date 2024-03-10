@@ -28,6 +28,10 @@ function LecturesTest() {
           <p>{lecture.title}</p>
         </div>
         <div className={styles.contentInner}>
+          <img
+            src="https://avatars.dzeninfra.ru/get-zen_doc/3938527/pub_5f4a024a2e211011a80d7dfe_5f4a04bc3df0035d9ef955b8/scale_1200"
+            alt=""
+          />
           <div
             className={styles.testSliderBody}
             style={{

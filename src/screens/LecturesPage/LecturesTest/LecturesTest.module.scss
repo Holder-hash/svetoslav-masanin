@@ -45,6 +45,12 @@
   p {
     text-align: justify;
   }
+
+  img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+  }
 }
 
 .testSliderBody {
@@ -72,13 +78,15 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
-  padding: 3rem 13rem;
+  padding: 3rem 10rem;
 }
 
 .sliderNavWrapper {
   width: 100%;
   display: flex;
   justify-content: center;
+  position: absolute;
+  bottom: 10px;
 }
 
 .sliderNavIndexWrapper {
