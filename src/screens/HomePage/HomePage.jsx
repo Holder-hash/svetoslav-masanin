@@ -20,8 +20,18 @@ function HomePage() {
         </div>
 
         <div className={styles.overviewLinks}>
-          <img src={vkIcon} alt="vk" />
-          <img src={tgIcon} alt="tg" />
+          <img
+            src={vkIcon}
+            alt="vk"
+            onClick={() => window.open("https://vk.com/svetoskav/", "_blank")}
+          />
+          <img
+            src={tgIcon}
+            alt="tg"
+            onClick={() =>
+              window.open("https://web.telegram.org/a/#5111001045", "_blank")
+            }
+          />
           <img src={dsIcon} alt="ds" />
         </div>
       </div>
