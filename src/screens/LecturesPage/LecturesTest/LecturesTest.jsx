@@ -11,21 +11,34 @@ function LecturesTest() {
   const [sliderIndex, setSliderIndex] = useState(0);
   const [slides, setSlides] = useState(0);
   const [activeNavBtn, setActiveNavBtn] = useState(null);
-  let [Answers, setAnswers] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [answer, setAnswer] = useState([]);
 
   useEffect(() => {
     setLecture(location.state.lecture);
     setTest(location.state.test);
+    setSlides(location.state.test.questions.length);
   }, [location.state]);
 
-  useEffect(() => {
-    test.questions && setSlides(test.questions.length);
-  });
+  // useEffect(() => {}, [test.questions]);
 
-  function onOptionSelected(oprion) {
-    setAnswers([...Answers, oprion.right]);
-    console.log(Answers);
-  }
+  const handleSelectOption = (inp) => {
+    console.log(inp);
+
+    const newSelectedOptions = [...selectedOptions];
+    const newAnswerArr = [...answer];
+    newSelectedOptions[inp.questionIndex] = inp.option.right;
+    newAnswerArr[inp.questionIndex] = inp.optionIndex;
+    setSelectedOptions(newSelectedOptions);
+    setAnswer(newAnswerArr);
+  };
+
+  const handleSaveSelectedOptions = () => {
+    // Здесь вы можете использовать массив selectedOptions для нужных действий или отправки на сервер
+
+    console.log(selectedOptions);
+    console.log(answer);
+  };
 
   return (
     <>
@@ -46,17 +59,24 @@ function LecturesTest() {
             }}
           >
             {test.questions &&
-              test.questions.map((question, index) => (
-                <div key={index} className={styles.questionBody}>
+              test.questions.map((question, questionIndex) => (
+                <div key={questionIndex} className={styles.questionBody}>
                   <p className={styles.questionTitle}>{question.title}</p>
                   <div className={styles.optionsBody}>
                     {/* options */}
-                    {question.options.map((option, index) => (
-                      <div key={index}>
+                    {question.options.map((option, optionIndex) => (
+                      <div key={optionIndex}>
                         <TestOption
                           text={option.title}
-                          name={"question"}
-                          onInput={() => onOptionSelected(option)}
+                          name={"question" + questionIndex}
+                          defaultChecked={optionIndex == answer[questionIndex]}
+                          onInput={() =>
+                            handleSelectOption({
+                              option,
+                              questionIndex,
+                              optionIndex,
+                            })
+                          }
                         />
                       </div>
                     ))}
@@ -100,7 +120,12 @@ function LecturesTest() {
                   : setSliderIndex(sliderIndex - 100)
               }
             />
-            <button className={styles.doneBtn}>Завершить</button>
+            <button
+              className={styles.doneBtn}
+              onClick={handleSaveSelectedOptions}
+            >
+              Завершить
+            </button>
           </div>
         </div>
       </div>

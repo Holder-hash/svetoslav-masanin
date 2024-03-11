@@ -91,19 +91,23 @@
                         "options": [
                             {
                                 "title": " 30 минут",
-                                "right": "false"
+                                "right": "false",
+                                "checked": "false"
                             },
                             {
                                 "title": "2 часа",
-                                "right": "false"
+                                "right": "false",
+                                "checked": "false"
                             },
                             {
                                 "title": "10-12 часов",
-                                "right": "true"
+                                "right": "true",
+                                "checked": "false"
                             },
                             {
                                 "title": "24 часа",
-                                "right": "false"
+                                "right": "false",
+                                "checked": "false"
                             }
                         ]
                     },
@@ -112,19 +116,23 @@
                         "options": [
                             {
                                 "title": "первый",
-                                "right": "false"
+                                "right": "false",
+                                "checked": "false"
                             },
                             {
                                 "title": "второй",
-                                "right": "false"
+                                "right": "false",
+                                "checked": "false"
                             },
                             {
                                 "title": "третий",
-                                "right": "false"
+                                "right": "false",
+                                "checked": "false"
                             },
                             {
                                 "title": "четвертый",
-                                "right": "true"
+                                "right": "true",
+                                "checked": "false"
                             }
                         ]
                     },
