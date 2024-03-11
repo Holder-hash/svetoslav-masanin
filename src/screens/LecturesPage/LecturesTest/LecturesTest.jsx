@@ -10,6 +10,7 @@ function LecturesTest() {
   const [test, setTest] = useState({});
   const [sliderIndex, setSliderIndex] = useState(0);
   const [slides, setSlides] = useState(0);
+  const [activeNavBtn, setActiveNavBtn] = useState(null);
   let [Answers, setAnswers] = useState([]);
 
   useEffect(() => {
@@ -77,7 +78,14 @@ function LecturesTest() {
                 test.questions.map((question, index) => (
                   <div key={index}>
                     <SlideNavButtons
-                      onClick={() => setSliderIndex(0 - index * 100)}
+                      style={{
+                        backgroundColor:
+                          activeNavBtn == index ? "#a5a5a5b4" : "#b9b9b9b4",
+                      }}
+                      onClick={() => {
+                        setSliderIndex(0 - index * 100);
+                        setActiveNavBtn(index);
+                      }}
                     >
                       {index + 1}
                     </SlideNavButtons>
