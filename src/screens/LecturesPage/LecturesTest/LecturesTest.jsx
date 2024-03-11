@@ -10,7 +10,7 @@ function LecturesTest() {
   const [test, setTest] = useState({});
   const [sliderIndex, setSliderIndex] = useState(0);
   const [slides, setSlides] = useState(0);
-  const [correctAnswer, setCorrectAnswer] = useState(0);
+  let [Answers, setAnswers] = useState([]);
 
   useEffect(() => {
     setLecture(location.state.lecture);
@@ -22,7 +22,8 @@ function LecturesTest() {
   });
 
   function onOptionSelected(oprion) {
-    console.log(oprion);
+    setAnswers([...Answers, oprion.right]);
+    console.log(Answers);
   }
 
   return (
@@ -91,6 +92,7 @@ function LecturesTest() {
                   : setSliderIndex(sliderIndex - 100)
               }
             />
+            <button className={styles.doneBtn}>Завершить</button>
           </div>
         </div>
       </div>

@@ -92,3 +92,20 @@
 .sliderNavIndexWrapper {
   display: flex;
 }
+
+.doneBtn {
+  margin-left: 1rem;
+  padding: 0 1rem;
+  outline: none;
+  border-radius: 10px;
+  background-color: rgba(185, 185, 185, 0.7058823529);
+  border: 1px solid rgba(128, 128, 128, 0.205);
+  transition: 0.3s;
+  cursor: pointer;
+
+  font-weight: 600;
+}
+.doneBtn:hover {
+  cursor: pointer;
+  background-color: #a5a5a5b4;
+}
