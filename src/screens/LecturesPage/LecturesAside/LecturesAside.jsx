@@ -9,9 +9,9 @@ function LecturesAside() {
     <aside className={styles.aside}>
       <h3>Навигация</h3>
       {lectures.map((lecture) => (
-        <>
+        <div key={lecture.id}>
           <h4>Темы</h4>
-          <ul className={styles.details} key={lecture.id}>
+          <ul className={styles.details}>
             {lecture.chapters.map((chapter) => (
               <li
                 key={chapter.id}
@@ -41,7 +41,7 @@ function LecturesAside() {
               </li>
             ))}
           </ul>
-        </>
+        </div>
       ))}
     </aside>
   );

@@ -10,6 +10,7 @@ function LecturesTest() {
   const [test, setTest] = useState({});
   const [sliderIndex, setSliderIndex] = useState(0);
   const [slides, setSlides] = useState(0);
+  const [correctAnswer, setCorrectAnswer] = useState(0);
 
   useEffect(() => {
     setLecture(location.state.lecture);
@@ -19,6 +20,10 @@ function LecturesTest() {
   useEffect(() => {
     test.questions && setSlides(test.questions.length);
   });
+
+  function onOptionSelected(oprion) {
+    console.log(oprion);
+  }
 
   return (
     <>
@@ -46,7 +51,11 @@ function LecturesTest() {
                     {/* options */}
                     {question.options.map((option, index) => (
                       <div key={index}>
-                        <TestOption text={option.title} name={"question"} />
+                        <TestOption
+                          text={option.title}
+                          name={"question"}
+                          onInput={() => onOptionSelected(option)}
+                        />
                       </div>
                     ))}
                   </div>
@@ -65,14 +74,13 @@ function LecturesTest() {
             <div className={styles.sliderNavIndexWrapper}>
               {test.questions &&
                 test.questions.map((question, index) => (
-                  <>
+                  <div key={index}>
                     <SlideNavButtons
-                      key={index}
                       onClick={() => setSliderIndex(0 - index * 100)}
                     >
                       {index + 1}
                     </SlideNavButtons>
-                  </>
+                  </div>
                 ))}
             </div>
             <SlideNavButtons
