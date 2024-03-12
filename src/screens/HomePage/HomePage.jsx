@@ -4,7 +4,6 @@ import vkIcon from "../../assets/images/icons/vk-icon.png";
 import tgIcon from "../../assets/images/icons/tg-icon.png";
 import dsIcon from "../../assets/images/icons/ds-icon.png";
 import { useNavigate } from "react-router-dom";
-import avatar from "../../assets/images/avatar.jpg";
 
 function HomePage() {
   const navigate = useNavigate();
