@@ -14,17 +14,16 @@ function LecturesTest() {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [answer, setAnswer] = useState([]);
 
+  const [correctAnswers, setСorrectAnswers] = useState(0);
+  const [score, setScore] = useState(0);
+
   useEffect(() => {
     setLecture(location.state.lecture);
     setTest(location.state.test);
     setSlides(location.state.test.questions.length);
   }, [location.state]);
 
-  // useEffect(() => {}, [test.questions]);
-
   const handleSelectOption = (inp) => {
-    console.log(inp);
-
     const newSelectedOptions = [...selectedOptions];
     const newAnswerArr = [...answer];
     newSelectedOptions[inp.questionIndex] = inp.option.right;
@@ -34,12 +33,15 @@ function LecturesTest() {
   };
 
   const handleSaveSelectedOptions = () => {
-    // Здесь вы можете использовать массив selectedOptions для нужных действий или отправки на сервер
-
+    setСorrectAnswers(
+      selectedOptions.filter((value) => value === "true").length
+    );
     console.log(selectedOptions);
-    console.log(answer);
+    console.log(correctAnswers);
+    const totalScore = (correctAnswers * 5) / 10;
+    setScore(Math.round(2 + (totalScore / 5) * (5 - 2)));
+    console.log(score);
   };
-
   return (
     <>
       <div className={styles.content}>
