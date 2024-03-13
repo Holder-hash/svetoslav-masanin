@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import SlideNavButtons from "../../../components/ui/SlideNavButtons/SlideNavButtons";
 import TestOption from "../../../components/ui/TestOption/TestOption";
+import getCurrentDate from "../../../components/hooks/getCurrentDate";
 
 function LecturesTest() {
   const location = useLocation();
@@ -58,7 +59,7 @@ function LecturesTest() {
   const testScores = JSON.parse(localStorage.getItem("testScores")) || [];
 
   const saveTestScoreToLocalStorage = (testId, title, score) => {
-    const newScore = { id: testId, title, score };
+    const newScore = { id: testId, title, score, time: getCurrentDate() };
 
     testScores.push(newScore);
 
