@@ -26,11 +26,13 @@ function LecturesTest() {
   const handleSelectOption = (inp) => {
     const newSelectedOptions = [...selectedOptions];
     const newAnswerArr = [...answer];
+
     newSelectedOptions[inp.questionIndex] = inp.option.right;
     newAnswerArr[inp.questionIndex] = inp.optionIndex;
+
     setSelectedOptions(newSelectedOptions);
     setAnswer(newAnswerArr);
-    console.log(selectedOptions);
+
     if (inp.option.right == "true") {
       return { ...inp, correctAnswer: true };
     } else {
@@ -167,12 +169,20 @@ function LecturesTest() {
                   : setSliderIndex(sliderIndex - 100)
               }
             />
-            <button
-              className={styles.doneBtn}
-              onClick={handleSaveSelectedOptions}
-            >
-              Завершить
-            </button>
+            {testScores.some((item) => item.id === test.id) ? (
+              <p style={{ alignSelf: "center", marginLeft: "1rem" }}>
+                {`Тест завершен с оценкой ${
+                  testScores.find((score) => score.id === test.id).score
+                }`}
+              </p>
+            ) : (
+              <button
+                className={styles.doneBtn}
+                onClick={handleSaveSelectedOptions}
+              >
+                Завершить
+              </button>
+            )}
           </div>
         </div>
       </div>
