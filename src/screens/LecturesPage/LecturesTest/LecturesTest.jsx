@@ -79,16 +79,18 @@ function LecturesTest() {
                       const selectedOption = selectedOptions[questionIndex];
                       let backgroundColor = "white";
 
-                      if (
-                        selectedOption === "true" &&
-                        option.right === "true"
-                      ) {
-                        backgroundColor = "green";
-                      } else if (
-                        selectedOption === "false" &&
-                        optionIndex == answer[questionIndex]
-                      )
-                        backgroundColor = "red";
+                      if (testDone) {
+                        if (
+                          selectedOption === "true" &&
+                          option.right === "true"
+                        ) {
+                          backgroundColor = "green";
+                        } else if (
+                          selectedOption === "false" &&
+                          optionIndex == answer[questionIndex]
+                        )
+                          backgroundColor = "red";
+                      }
 
                       return (
                         <div
