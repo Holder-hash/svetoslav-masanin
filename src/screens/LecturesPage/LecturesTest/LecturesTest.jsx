@@ -46,10 +46,20 @@ function LecturesTest() {
     const totalScore = (correctAnswers * 5) / 10;
     const score = Math.round(2 + (totalScore / 5) * (5 - 2));
     alert(`Ваша оценка: ${score}`);
-    console.log(selectedOptions);
+
+    saveTestScoreToLocalStorage(test.id, test.title, score);
   };
 
-  useEffect(() => {}, [correctAnswers]);
+  // score storage
+  const testScores = JSON.parse(localStorage.getItem("testScores")) || [];
+
+  const saveTestScoreToLocalStorage = (testId, title, score) => {
+    const newScore = { id: testId, title, score };
+
+    testScores.push(newScore);
+
+    localStorage.setItem("testScores", JSON.stringify(testScores));
+  };
 
   return (
     <>
