@@ -21,6 +21,7 @@ function LecturesTest() {
     setLecture(location.state.lecture);
     setTest(location.state.test);
     setSlides(location.state.test.questions.length);
+    setTestDone(false);
   }, [location.state]);
 
   const handleSelectOption = (inp) => {
@@ -42,12 +43,13 @@ function LecturesTest() {
 
   const handleSaveSelectedOptions = () => {
     setTestDone(true);
+
     setСorrectAnswers(
       selectedOptions.filter((value) => value === "true").length
     );
+
     const totalScore = (correctAnswers * 5) / 10;
     const score = Math.round(2 + (totalScore / 5) * (5 - 2));
-    alert(`Ваша оценка: ${score}`);
 
     saveTestScoreToLocalStorage(test.id, test.title, score);
   };
@@ -170,7 +172,15 @@ function LecturesTest() {
               }
             />
             {testScores.some((item) => item.id === test.id) ? (
-              <p style={{ alignSelf: "center", marginLeft: "1rem" }}>
+              <p
+                style={{
+                  position: "absolute",
+                  alignSelf: "center",
+                  bottom: "2rem",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                }}
+              >
                 {`Тест завершен с оценкой ${
                   testScores.find((score) => score.id === test.id).score
                 }`}

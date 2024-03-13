@@ -3,38 +3,6 @@ import lectures from "../../data/lectures.json";
 import { useEffect, useState } from "react";
 
 function LecturesPage() {
-  // const [studentGrades, setStudentGrades] = useState([]);
-  // let studentGradesStorage = JSON.parse(localStorage.getItem("studentGrades"));
-
-  // if (localStorage.getItem("studentGrades") == null) {
-  //   localStorage.setItem(
-  //     "studentGrades",
-  //     JSON.stringify([{ id: 0, studentGrade: "" }])
-  //   );
-  // }
-
-  // useEffect(() => {
-  //   setStudentGrades(studentGradesStorage);
-
-  //   if (localStorage.getItem("studentGrades")) {
-  //     lectures[0].tests.map((test, testIndex) => {
-  //       if (testIndex > studentGrades.length) {
-  //         if (studentGrades.id == studentGradesStorage.id) return;
-  //         else {
-  //           studentGrades.push({ id: testIndex, studentGrade: "" });
-  //           localStorage.setItem(
-  //             "studentGrades",
-  //             JSON.stringify(studentGrades)
-  //           );
-  //         }
-  //       }
-  //       console.log(studentGrades);
-  //     });
-  //   }
-  // }, []);
-
-  // console.log(studentGrades);
-
   return (
     <>
       <div className={styles.content}>
