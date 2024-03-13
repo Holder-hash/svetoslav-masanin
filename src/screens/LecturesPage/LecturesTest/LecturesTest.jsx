@@ -18,6 +18,8 @@ function LecturesTest() {
   const [correctAnswers, setСorrectAnswers] = useState(0);
   const [testDone, setTestDone] = useState(false);
 
+  const testScores = JSON.parse(localStorage.getItem("testScores")) || [];
+
   useEffect(() => {
     setLecture(location.state.lecture);
     setTest(location.state.test);
@@ -25,20 +27,33 @@ function LecturesTest() {
     setTestDone(false);
   }, [location.state]);
 
+  const radios = document.querySelectorAll("input");
+  if (testScores.some((item) => item.id === test.id)) {
+    radios.forEach((radio) => {
+      radio.disabled = true;
+    });
+  } else {
+    radios.forEach((radio) => {
+      radio.disabled = false;
+    });
+  }
+
   const handleSelectOption = (inp) => {
-    const newSelectedOptions = [...selectedOptions];
-    const newAnswerArr = [...answer];
+    if (!testScores.some((item) => item.id === test.id)) {
+      const newSelectedOptions = [...selectedOptions];
+      const newAnswerArr = [...answer];
 
-    newSelectedOptions[inp.questionIndex] = inp.option.right;
-    newAnswerArr[inp.questionIndex] = inp.optionIndex;
+      newSelectedOptions[inp.questionIndex] = inp.option.right;
+      newAnswerArr[inp.questionIndex] = inp.optionIndex;
 
-    setSelectedOptions(newSelectedOptions);
-    setAnswer(newAnswerArr);
+      setSelectedOptions(newSelectedOptions);
+      setAnswer(newAnswerArr);
 
-    if (inp.option.right == "true") {
-      return { ...inp, correctAnswer: true };
-    } else {
-      return { ...inp, correctAnswer: false };
+      if (inp.option.right == "true") {
+        return { ...inp, correctAnswer: true };
+      } else {
+        return { ...inp, correctAnswer: false };
+      }
     }
   };
 
@@ -56,7 +71,6 @@ function LecturesTest() {
   };
 
   // score storage
-  const testScores = JSON.parse(localStorage.getItem("testScores")) || [];
 
   const saveTestScoreToLocalStorage = (testId, title, score) => {
     const newScore = { id: testId, title, score, time: getCurrentDate() };
