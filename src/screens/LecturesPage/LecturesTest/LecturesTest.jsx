@@ -15,7 +15,7 @@ function LecturesTest() {
   const [answer, setAnswer] = useState([]);
 
   const [correctAnswers, setСorrectAnswers] = useState(0);
-  const [score, setScore] = useState(0);
+  const [testDone, setTestDone] = useState(false);
 
   useEffect(() => {
     setLecture(location.state.lecture);
@@ -30,18 +30,27 @@ function LecturesTest() {
     newAnswerArr[inp.questionIndex] = inp.optionIndex;
     setSelectedOptions(newSelectedOptions);
     setAnswer(newAnswerArr);
+    console.log(selectedOptions);
+    if (inp.option.right == "true") {
+      return { ...inp, correctAnswer: true };
+    } else {
+      return { ...inp, correctAnswer: false };
+    }
   };
 
   const handleSaveSelectedOptions = () => {
+    setTestDone(true);
     setСorrectAnswers(
       selectedOptions.filter((value) => value === "true").length
     );
-    console.log(selectedOptions);
-    console.log(correctAnswers);
     const totalScore = (correctAnswers * 5) / 10;
-    setScore(Math.round(2 + (totalScore / 5) * (5 - 2)));
-    console.log(score);
+    const score = Math.round(2 + (totalScore / 5) * (5 - 2));
+    alert(`Ваша оценка: ${score}`);
+    console.log(selectedOptions);
   };
+
+  useEffect(() => {}, [correctAnswers]);
+
   return (
     <>
       <div className={styles.content}>
@@ -66,22 +75,46 @@ function LecturesTest() {
                   <p className={styles.questionTitle}>{question.title}</p>
                   <div className={styles.optionsBody}>
                     {/* options */}
-                    {question.options.map((option, optionIndex) => (
-                      <div key={optionIndex}>
-                        <TestOption
-                          text={option.title}
-                          name={"question" + questionIndex}
-                          defaultChecked={optionIndex == answer[questionIndex]}
-                          onInput={() =>
-                            handleSelectOption({
-                              option,
-                              questionIndex,
-                              optionIndex,
-                            })
-                          }
-                        />
-                      </div>
-                    ))}
+                    {question.options.map((option, optionIndex) => {
+                      const selectedOption = selectedOptions[questionIndex];
+                      let backgroundColor = "white";
+
+                      if (
+                        selectedOption === "true" &&
+                        option.right === "true"
+                      ) {
+                        backgroundColor = "green";
+                      } else if (
+                        selectedOption === "false" &&
+                        optionIndex == answer[questionIndex]
+                      )
+                        backgroundColor = "red";
+
+                      return (
+                        <div
+                          key={optionIndex}
+                          style={{
+                            background: backgroundColor,
+                            borderRadius: "15px",
+                          }}
+                        >
+                          <TestOption
+                            text={option.title}
+                            name={"question" + questionIndex}
+                            defaultChecked={
+                              optionIndex == answer[questionIndex]
+                            }
+                            onInput={() =>
+                              handleSelectOption({
+                                option,
+                                questionIndex,
+                                optionIndex,
+                              })
+                            }
+                          />
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               ))}

@@ -109,3 +109,13 @@
   cursor: pointer;
   background-color: #a5a5a5b4;
 }
+
+.correctAnswer {
+  border-radius: 15px;
+  background-color: green;
+}
+
+.uncorrectAnswer {
+  border-radius: 15px;
+  background-color: red;
+}
