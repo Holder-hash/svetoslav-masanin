@@ -1,10 +1,12 @@
 import { Routes, Route } from "react-router-dom";
+import axios from "axios";
 import Layout from "./components/Layout/Layout";
 import HomePage from "./screens/HomePage/HomePage.jsx";
 import LecturesPage from "./screens/LecturesPage/LecturesPage.jsx";
 import LecturesSingle from "./screens/LecturesPage/LecturesSingle/LecturesSingle.jsx";
 import LecturesTest from "./screens/LecturesPage/LecturesTest/LecturesTest.jsx";
-import axios from "axios";
+import AdminPage from "./screens/AdminPage/AdminPage.jsx";
+
 import { useState, useEffect } from "react";
 
 function App() {
@@ -31,6 +33,7 @@ function App() {
         element={<Layout totalUniqueVisitors={totalUniqueVisitors} />}
       >
         <Route index element={<HomePage />} />
+        <Route path="admin" element={<AdminPage />} />
         <Route path="lectures" element={<LecturesPage />} />
         <Route path="lectures/:id/:id" element={<LecturesSingle />} />
         <Route path="lectures/:id/test" element={<LecturesTest />} />
