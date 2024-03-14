@@ -7,6 +7,7 @@ function AdminPage() {
   const [showErrAuthMessage, setShowErrAuthMessage] = useState(false);
   const [remember, setRemember] = useState(false);
   const [allStudentsData, setAllStudentsData] = useState([]);
+  const [filterText, setFilterText] = useState("");
 
   const loginRef = useRef();
   const PasswordRef = useRef();
@@ -67,32 +68,39 @@ function AdminPage() {
         </div>
       ) : (
         <div className={styles.table}>
-          {allStudentsData.map((studentsData) => {
-            console.log(studentsData);
+          <input
+            type="text"
+            placeholder="Введите ФИО студента"
+            value={filterText}
+            onChange={(e) => setFilterText(e.target.value)}
+          />
 
-            return (
-              <div>
-                <br />
-                <hr />
-                <br />
-                <h4>ФИО: {studentsData.studentname}</h4>
-                <br />
-                <div>
-                  {JSON.parse(studentsData.grades).map((grade) => {
-                    console.log(grade);
-
-                    return (
-                      <>
-                        <p>
+          {allStudentsData
+            .filter((student) =>
+              student.studentname
+                .toLowerCase()
+                .includes(filterText.toLowerCase())
+            )
+            .map((studentsData) => {
+              return (
+                <div key={studentsData.id}>
+                  <br />
+                  <hr />
+                  <br />
+                  <h4>ФИО: {studentsData.studentname}</h4>
+                  <br />
+                  <div>
+                    {JSON.parse(studentsData.grades).map((grade) => {
+                      return (
+                        <p key={grade.id}>
                           {grade.title} - {grade.score}
                         </p>
-                      </>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       )}
     </>
