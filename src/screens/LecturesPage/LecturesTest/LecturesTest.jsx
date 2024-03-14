@@ -15,7 +15,7 @@ function LecturesTest() {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [answer, setAnswer] = useState([]);
 
-  const [correctAnswers, setСorrectAnswers] = useState(0);
+  // const [correctAnswers, setСorrectAnswers] = useState(0);
   const [testDone, setTestDone] = useState(false);
 
   const testScores = JSON.parse(localStorage.getItem("testScores")) || [];
@@ -60,13 +60,18 @@ function LecturesTest() {
   const handleSaveSelectedOptions = () => {
     setTestDone(true);
 
-    setСorrectAnswers(
-      selectedOptions.filter((value) => value === "true").length
-    );
+    // setСorrectAnswers(
+    //   selectedOptions.filter((value) => value === "true").length
+    // );
 
+    const correctAnswers = selectedOptions.filter(
+      (value) => value === "true"
+    ).length;
     const totalScore = (correctAnswers * 5) / 10;
     const score = Math.round(2 + (totalScore / 5) * (5 - 2));
-
+    console.log(
+      `correctAnswers: ${correctAnswers};\ntotal score: ${totalScore};\nscore: ${score};`
+    );
     saveTestScoreToLocalStorage(test.id, test.title, score);
   };
 
