@@ -93,7 +93,7 @@ function AdminPage() {
                     {JSON.parse(studentsData.grades).map((grade) => {
                       return (
                         <p key={grade.id}>
-                          {grade.title} - {grade.score}
+                          {grade.title} - {grade.score} ({grade.time})
                         </p>
                       );
                     })}
