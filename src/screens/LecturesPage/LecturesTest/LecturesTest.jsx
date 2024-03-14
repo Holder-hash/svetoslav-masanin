@@ -132,7 +132,10 @@ function LecturesTest() {
   function studentNameSubmitHanlder(event) {
     event.preventDefault();
 
-    if (studentNameRef.current.value != "") {
+    if (
+      studentNameRef.current.value != "" &&
+      studentPasswordRef.current.value != ""
+    ) {
       createUser();
     }
   }
