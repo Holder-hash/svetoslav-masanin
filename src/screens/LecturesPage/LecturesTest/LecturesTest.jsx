@@ -20,13 +20,13 @@ function LecturesTest() {
   const [testDone, setTestDone] = useState(false);
   const testScores = JSON.parse(localStorage.getItem("testScores")) || [];
 
-  const [modalInfoIsOpen, setModalInfoIsOpen] = useState(false);
+  const [modalRegIsOpen, setModalRegIsOpen] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
 
-  const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
 
   const studentNameRef = useRef();
+  const studentPasswordRef = useRef();
 
   useEffect(() => {
     setLecture(location.state.lecture);
@@ -67,7 +67,7 @@ function LecturesTest() {
 
   const handleSaveSelectedOptions = () => {
     if (isAuth == false) {
-      setModalInfoIsOpen(true);
+      setModalRegIsOpen(true);
     } else {
       setTestDone(true);
 
@@ -78,11 +78,30 @@ function LecturesTest() {
       const score = Math.round(2 + (totalScore / 5) * (5 - 2));
 
       saveTestScoreToLocalStorage(test.id, test.title, score);
+
+      axios
+        .post(
+          "http://localhost/setGrades.php",
+          {
+            studentname: localStorage.getItem("studentName"),
+            grades: localStorage.getItem("testScores"),
+          },
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data.message);
+        })
+        .catch((error) => {
+          console.error("Ошибка при обновлении данных:", error);
+        });
     }
   };
 
   // score storage
-
   const saveTestScoreToLocalStorage = (testId, title, score) => {
     const newScore = { id: testId, title, score, time: getCurrentDate() };
 
@@ -102,12 +121,11 @@ function LecturesTest() {
   }, []);
 
   function studentReg() {
-    setModalInfoIsOpen(true);
+    setModalRegIsOpen(true);
   }
 
   function studentNameSubmitHanlder(event) {
     event.preventDefault();
-    localStorage.setItem("studentName", studentNameRef.current.value);
 
     if (studentNameRef.current.value != "") {
       createUser();
@@ -118,9 +136,24 @@ function LecturesTest() {
 
   const createUser = () => {
     axios
-      .post("http://localhost/setGrades.php", { username: username })
+      .post(
+        "http://localhost/studentReg.php",
+        {
+          studentname: studentNameRef.current.value,
+          studentPassword: studentPasswordRef.current.value,
+        },
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      )
       .then((response) => {
         setMessage(response.data.message);
+        if (response.data.message.includes("успешно")) {
+          setIsAuth(true);
+          localStorage.setItem("studentName", studentNameRef.current.value);
+        }
       })
       .catch((error) => {
         console.error("Ошибка при создании пользователя:", error);
@@ -131,22 +164,37 @@ function LecturesTest() {
     <>
       {isAuth == false && (
         <CustomModal
-          isOpen={modalInfoIsOpen}
-          onClose={() => setModalInfoIsOpen(false)}
+          isOpen={modalRegIsOpen}
+          onClose={() => setModalRegIsOpen(false)}
         >
           <form className={styles.regForm} onSubmit={studentNameSubmitHanlder}>
-            <h3>Введите фио:</h3>
-            <input
-              className={styles.input}
-              type="text"
-              placeholder="Иванов Иван Иванович"
-              ref={studentNameRef}
-            />
-            <span className={styles.regFormMessage}>{message}</span>
+            <h3>Регистрация</h3>
+            <div className={styles.inpBox}>
+              <label>Введите фио:</label>
+              <input
+                className={styles.input}
+                type="text"
+                placeholder="Иванов Иван Иванович"
+                ref={studentNameRef}
+              />
+            </div>
+            <div>
+              <label>Придумайте пароль:</label>
+              <input
+                className={styles.input}
+                type="password"
+                placeholder="**********"
+                ref={studentPasswordRef}
+              />
+            </div>
+
             {localStorage.getItem("studentName") == null ? (
               <input type="submit" className={styles.submit} />
             ) : (
               ""
+            )}
+            {message != "" && (
+              <span className={styles.regFormMessage}>{message}</span>
             )}
           </form>
         </CustomModal>
