@@ -21,12 +21,17 @@ function LecturesTest() {
   const testScores = JSON.parse(localStorage.getItem("testScores")) || [];
 
   const [modalRegIsOpen, setModalRegIsOpen] = useState(false);
+  const [modalAuthIsOpen, setModalAuthIsOpen] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
 
   const [message, setMessage] = useState("");
+  const [messageAuth, setMessageAuth] = useState("");
 
   const studentNameRef = useRef();
   const studentPasswordRef = useRef();
+
+  const studentAuthNameRef = useRef();
+  const studentAuthPasswordRef = useRef();
 
   useEffect(() => {
     setLecture(location.state.lecture);
@@ -160,6 +165,42 @@ function LecturesTest() {
       });
   };
 
+  // auth
+  function authHandler(event) {
+    event.preventDefault();
+
+    axios
+      .post(
+        "http://localhost/getGrades.php",
+        {
+          studentname: studentAuthNameRef.current.value,
+          studentPassword: studentAuthPasswordRef.current.value,
+        },
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        }
+      )
+      .then((response) => {
+        if (response.data.grades) {
+          localStorage.setItem("testScores", response.data.grades);
+          localStorage.setItem(
+            "studentName",
+            studentAuthPasswordRef.current.value
+          );
+          setIsAuth(true);
+          setModalAuthIsOpen(false);
+        } else {
+          setMessageAuth(response.data.message);
+          console.log(response.data.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Ошибка при запросе данных студента:", error);
+      });
+  }
+
   return (
     <>
       {isAuth == false && (
@@ -187,18 +228,70 @@ function LecturesTest() {
                 ref={studentPasswordRef}
               />
             </div>
-
             {localStorage.getItem("studentName") == null ? (
               <input type="submit" className={styles.submit} />
             ) : (
               ""
             )}
+            <p
+              className={styles.haveAcc}
+              onClick={() => {
+                setModalRegIsOpen(false);
+                setModalAuthIsOpen(true);
+              }}
+            >
+              Есть аккаунт?
+            </p>
             {message != "" && (
               <span className={styles.regFormMessage}>{message}</span>
             )}
           </form>
         </CustomModal>
       )}
+
+      <CustomModal
+        isOpen={modalAuthIsOpen}
+        onClose={() => setModalAuthIsOpen(false)}
+      >
+        <form className={styles.regForm} onSubmit={authHandler}>
+          <h3>Вход</h3>
+          <div className={styles.inpBox}>
+            <label>Введите фио:</label>
+            <input
+              className={styles.input}
+              type="text"
+              placeholder="Иванов Иван Иванович"
+              ref={studentAuthNameRef}
+            />
+          </div>
+          <div>
+            <label>Введите пароль:</label>
+            <input
+              className={styles.input}
+              type="password"
+              placeholder="**********"
+              ref={studentAuthPasswordRef}
+            />
+          </div>
+          {localStorage.getItem("studentName") == null ? (
+            <input type="submit" className={styles.submit} />
+          ) : (
+            ""
+          )}
+          <p
+            className={styles.haveAcc}
+            onClick={() => {
+              setModalRegIsOpen(true);
+              setModalAuthIsOpen(false);
+            }}
+          >
+            Нет аккаунта?
+          </p>
+          {messageAuth != "" && (
+            <span className={styles.regFormMessage}>{messageAuth}</span>
+          )}
+        </form>
+      </CustomModal>
 
       <div className={styles.content}>
         <div className={styles.contentTitle}>
