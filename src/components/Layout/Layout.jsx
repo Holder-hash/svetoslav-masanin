@@ -4,7 +4,7 @@ import Header from "./Header/Header";
 import LecturesAside from "../../screens/LecturesPage/LecturesAside/LecturesAside";
 import { useState, useEffect } from "react";
 
-function Layout() {
+function Layout({ totalUniqueVisitors }) {
   const [isLectures, setIsLectures] = useState(false);
   const location = useLocation();
 
@@ -16,7 +16,7 @@ function Layout() {
 
   return (
     <>
-      <Header />
+      <Header totalUniqueVisitors={totalUniqueVisitors} />
 
       <main>
         <div className={`wrapper ${isLectures && "wrapper--lectures"}`}>

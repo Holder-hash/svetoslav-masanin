@@ -6,11 +6,17 @@ import { LuLightbulbOff } from "react-icons/lu";
 import { IoMdPerson } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import CustomModal from "../../ui/CustomModal/CustomModal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function Header() {
+function Header({ totalUniqueVisitors }) {
   const navigate = useNavigate();
   const [modalInfoIsOpen, setModalInfoIsOpen] = useState(false);
+  const [visitorsCounter, setVisitorsCounter] = useState(0);
+
+  useEffect(() => {
+    setVisitorsCounter(totalUniqueVisitors);
+  }, []);
+  console.log(visitorsCounter);
 
   return (
     <>
@@ -68,7 +74,10 @@ function Header() {
           </nav>
 
           <div className={styles.themeIcon}>
-            <LuLightbulbOff />
+            {/* <LuLightbulbOff /> */}
+            <p style={{ fontSize: "16px", fontWeight: "600" }}>
+              Посетителей сайта: {visitorsCounter}
+            </p>
           </div>
         </div>
       </header>
