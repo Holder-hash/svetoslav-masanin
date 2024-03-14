@@ -1,6 +1,4 @@
 import styles from "./LecturesPage.module.scss";
-import lectures from "../../data/lectures.json";
-import { useEffect, useState } from "react";
 
 function LecturesPage() {
   return (

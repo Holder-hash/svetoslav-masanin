@@ -1,9 +1,11 @@
 import styles from "./LecturesTest.module.scss";
 import { useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import SlideNavButtons from "../../../components/ui/SlideNavButtons/SlideNavButtons";
 import TestOption from "../../../components/ui/TestOption/TestOption";
 import getCurrentDate from "../../../components/hooks/getCurrentDate";
+import CustomModal from "../../../components/ui/CustomModal/CustomModal";
+import axios from "axios";
 
 function LecturesTest() {
   const location = useLocation();
@@ -18,6 +20,14 @@ function LecturesTest() {
   const [testDone, setTestDone] = useState(false);
   const testScores = JSON.parse(localStorage.getItem("testScores")) || [];
 
+  const [modalInfoIsOpen, setModalInfoIsOpen] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
+
+  const [username, setUsername] = useState("");
+  const [message, setMessage] = useState("");
+
+  const studentNameRef = useRef();
+
   useEffect(() => {
     setLecture(location.state.lecture);
     setTest(location.state.test);
@@ -25,7 +35,7 @@ function LecturesTest() {
     setTestDone(false);
   }, [location.state]);
 
-  const radios = document.querySelectorAll("input");
+  const radios = document.querySelectorAll("input[type='radio']");
   if (testScores.some((item) => item.id === test.id)) {
     radios.forEach((radio) => {
       radio.disabled = true;
@@ -56,15 +66,19 @@ function LecturesTest() {
   };
 
   const handleSaveSelectedOptions = () => {
-    setTestDone(true);
+    if (isAuth == false) {
+      setModalInfoIsOpen(true);
+    } else {
+      setTestDone(true);
 
-    const correctAnswers = selectedOptions.filter(
-      (value) => value === "true"
-    ).length;
-    const totalScore = (correctAnswers * 5) / test.questions.length;
-    const score = Math.round(2 + (totalScore / 5) * (5 - 2));
+      const correctAnswers = selectedOptions.filter(
+        (value) => value === "true"
+      ).length;
+      const totalScore = (correctAnswers * 5) / test.questions.length;
+      const score = Math.round(2 + (totalScore / 5) * (5 - 2));
 
-    saveTestScoreToLocalStorage(test.id, test.title, score);
+      saveTestScoreToLocalStorage(test.id, test.title, score);
+    }
   };
 
   // score storage
@@ -77,8 +91,67 @@ function LecturesTest() {
     localStorage.setItem("testScores", JSON.stringify(testScores));
   };
 
+  // student reg
+  useEffect(() => {
+    if (localStorage.getItem("studentName") == null) {
+      setIsAuth(false);
+    } else {
+      setIsAuth(true);
+    }
+    studentReg();
+  }, []);
+
+  function studentReg() {
+    setModalInfoIsOpen(true);
+  }
+
+  function studentNameSubmitHanlder(event) {
+    event.preventDefault();
+    localStorage.setItem("studentName", studentNameRef.current.value);
+
+    if (studentNameRef.current.value != "") {
+      createUser();
+    }
+  }
+
+  // student red db
+
+  const createUser = () => {
+    axios
+      .post("http://localhost/setGrades.php", { username: username })
+      .then((response) => {
+        setMessage(response.data.message);
+      })
+      .catch((error) => {
+        console.error("Ошибка при создании пользователя:", error);
+      });
+  };
+
   return (
     <>
+      {isAuth == false && (
+        <CustomModal
+          isOpen={modalInfoIsOpen}
+          onClose={() => setModalInfoIsOpen(false)}
+        >
+          <form className={styles.regForm} onSubmit={studentNameSubmitHanlder}>
+            <h3>Введите фио:</h3>
+            <input
+              className={styles.input}
+              type="text"
+              placeholder="Иванов Иван Иванович"
+              ref={studentNameRef}
+            />
+            <span className={styles.regFormMessage}>{message}</span>
+            {localStorage.getItem("studentName") == null ? (
+              <input type="submit" className={styles.submit} />
+            ) : (
+              ""
+            )}
+          </form>
+        </CustomModal>
+      )}
+
       <div className={styles.content}>
         <div className={styles.contentTitle}>
           <p>{test.title}</p>
