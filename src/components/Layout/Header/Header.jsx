@@ -11,12 +11,6 @@ import { useState, useEffect } from "react";
 function Header({ totalUniqueVisitors }) {
   const navigate = useNavigate();
   const [modalInfoIsOpen, setModalInfoIsOpen] = useState(false);
-  const [visitorsCounter, setVisitorsCounter] = useState(0);
-
-  useEffect(() => {
-    setVisitorsCounter(totalUniqueVisitors);
-  }, []);
-  console.log(visitorsCounter);
 
   return (
     <>
@@ -76,7 +70,7 @@ function Header({ totalUniqueVisitors }) {
           <div className={styles.themeIcon}>
             {/* <LuLightbulbOff /> */}
             <p style={{ fontSize: "16px", fontWeight: "600" }}>
-              Посетителей сайта: {visitorsCounter}
+              Посетителей сайта: {totalUniqueVisitors}
             </p>
           </div>
         </div>

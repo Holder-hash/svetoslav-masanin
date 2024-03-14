@@ -21,7 +21,6 @@ function App() {
           console.error("Ошибка при получении данных о посетителях:", error);
         });
     };
-
     fetchUniqueVisitors();
   }, []);
 
