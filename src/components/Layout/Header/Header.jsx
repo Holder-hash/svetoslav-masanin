@@ -53,7 +53,7 @@ function Header({ totalUniqueVisitors }) {
 
           <nav className={styles.nav}>
             <ul>
-              <li onClick={() => navigate("/svetoslav-masanin/")}>
+              <li onClick={() => navigate("/")}>
                 <FaHome className={styles.navIcon} />
                 Главная
               </li>

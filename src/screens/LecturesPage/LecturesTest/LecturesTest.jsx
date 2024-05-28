@@ -70,11 +70,26 @@ function LecturesTest() {
     }
   };
 
+  // кнопка ЗАВЕРШИТЬ
   const handleSaveSelectedOptions = () => {
     if (isAuth == false) {
       setModalRegIsOpen(true);
     } else {
       setTestDone(true);
+
+      // Сбор ответов, выгружаются в админку
+      const answers = [];
+      test.questions.map((question, index) => {
+        answers.push(
+          `${question.title} - ${
+            selectedOptions[index] == "true"
+              ? "Правильно"
+              : selectedOptions[index] == "false"
+              ? "Неправильно"
+              : "Пусто"
+          }`
+        );
+      });
 
       const correctAnswers = selectedOptions.filter(
         (value) => value === "true"
@@ -86,7 +101,7 @@ function LecturesTest() {
 
       axios
         .post(
-          "http://localhost/setGrades.php",
+          "http://supergi2.beget.tech/php/setGrades.php",
           {
             studentname: localStorage.getItem("studentName"),
             grades: localStorage.getItem("testScores"),
@@ -145,7 +160,7 @@ function LecturesTest() {
   const createUser = () => {
     axios
       .post(
-        "http://localhost/studentReg.php",
+        "http://supergi2.beget.tech/php/studentReg.php",
         {
           studentname: studentNameRef.current.value,
           studentPassword: studentPasswordRef.current.value,
@@ -174,7 +189,7 @@ function LecturesTest() {
 
     axios
       .post(
-        "http://localhost/getGrades.php",
+        "http://supergi2.beget.tech/php/getGrades.php",
         {
           studentname: studentAuthNameRef.current.value,
           studentPassword: studentAuthPasswordRef.current.value,
@@ -219,6 +234,7 @@ function LecturesTest() {
                 className={styles.input}
                 type="text"
                 placeholder="Иванов Иван Иванович"
+                pattern="^[А-ЯЁа-яё]+\s[А-ЯЁа-яё]+\s[А-ЯЁа-яё]+$"
                 ref={studentNameRef}
               />
             </div>
@@ -228,6 +244,7 @@ function LecturesTest() {
                 className={styles.input}
                 type="password"
                 placeholder="**********"
+                minLength={5}
                 ref={studentPasswordRef}
               />
             </div>

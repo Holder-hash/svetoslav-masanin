@@ -43,6 +43,13 @@ function LecturesAside() {
           </ul>
         </div>
       ))}
+
+      <p
+        style={{ fontSize: "14px", opacity: "0.7", cursor: "pointer" }}
+        onClick={() => navigate("/admin")}
+      >
+        adm mod
+      </p>
     </aside>
   );
 }

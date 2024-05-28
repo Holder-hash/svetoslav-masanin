@@ -37,7 +37,7 @@ function AdminPage() {
 
   function getStudentsInfo() {
     axios
-      .get("http://localhost/getAllStudents.php")
+      .get("http://supergi2.beget.tech/php/getAllStudents.php")
       .then((response) => {
         const studentsData = response.data;
         setAllStudentsData(studentsData);
@@ -46,8 +46,6 @@ function AdminPage() {
         console.error("Ошибка при запросе данных о студентах:", error);
       });
   }
-
-  console.log(allStudentsData);
 
   return (
     <>
@@ -90,13 +88,17 @@ function AdminPage() {
                   <h4>ФИО: {studentsData.studentname}</h4>
                   <br />
                   <div>
-                    {JSON.parse(studentsData.grades).map((grade) => {
-                      return (
-                        <p key={grade.id}>
-                          {grade.title} - {grade.score} ({grade.time})
-                        </p>
-                      );
-                    })}
+                    {studentsData.grades != null ? (
+                      JSON.parse(studentsData.grades).map((grade) => {
+                        return (
+                          <p key={grade.id}>
+                            {grade.title} - {grade.score} ({grade.time})
+                          </p>
+                        );
+                      })
+                    ) : (
+                      <p>пусто</p>
+                    )}
                   </div>
                 </div>
               );

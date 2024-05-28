@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     const fetchUniqueVisitors = () => {
       axios
-        .get("http://localhost/VisitorsCount.php")
+        .get("http://supergi2.beget.tech/php/VisitorsCount.php")
         .then((response) => {
           setTotalUniqueVisitors(response.data.total_unique_visitors);
         })
@@ -29,7 +29,7 @@ function App() {
   return (
     <Routes>
       <Route
-        path="/svetoslav-masanin"
+        path="/"
         element={<Layout totalUniqueVisitors={totalUniqueVisitors} />}
       >
         <Route index element={<HomePage />} />

@@ -16,7 +16,7 @@ function HomePage() {
             <br />
             Масанин
           </h1>
-          <p>Преподователь специальных дисцеплин</p>
+          <p>Преподаватель специальных дисциплин</p>
         </div>
 
         <div className={styles.overviewLinks}>
@@ -32,7 +32,11 @@ function HomePage() {
               window.open("https://web.telegram.org/a/#5111001045", "_blank")
             }
           />
-          <img src={dsIcon} alt="ds" />
+          <img
+            src={dsIcon}
+            alt="ds"
+            onClick={() => window.open("https://discord.gg/gQc8KUZm", "_blank")}
+          />
         </div>
       </div>
 
@@ -46,7 +50,7 @@ function HomePage() {
           <h2>Ознакомьтесь с лекционными материалами!</h2>
           <img src={asideImg} alt="Врачебная лекция" />
           <ul>
-            <li>Учебные материалы по специальности сетринцкое дело</li>
+            <li>Учебные материалы по специальности сестринское дело</li>
             <li>Тестирование в конце каждой главы</li>
             {/* <li>Альтернативый видео материал</li> */}
           </ul>
